@@ -17,17 +17,16 @@ app.get('/', (req, res) => {
   return res.json({
     mensagem: 'API Estação Meteorológica',
     descricao: 'API para consulta de leituras meteorológicas armazenadas no PostgreSQL.',
+
     rotasDisponiveis: {
       listarTodasAsLeituras: 'GET /api/leituras',
       pesquisarLeiturasPorData: 'GET /api/leituras/data/2026-04-01',
-      pesquisarLeiturasImportadasPorCsv: 'GET /api/leituras/data/2026-04-02',
+      importarCsv: 'npm run import:csv'
     },
+
     formatoDaData: 'YYYY-MM-DD',
-    exemplosDeUso: [
-      'http://localhost:3000/api/leituras',
-      'http://localhost:3000/api/leituras/data/2026-04-01',
-      'http://localhost:3000/api/leituras/data/2026-04-02',
-    ],
+
+    exemploDeUso: 'http://localhost:3000/api/leituras/data/2026-04-01',
   });
 });
 
@@ -50,6 +49,7 @@ async function startServer() {
     app.listen(PORT, () => {
       console.log(`Servidor rodando em http://localhost:${PORT}`);
     });
+
   } catch (error) {
     console.error('Erro ao iniciar a aplicação:');
     console.error(error.message);
